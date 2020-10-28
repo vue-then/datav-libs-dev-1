@@ -4,6 +4,8 @@ const commonjs = require('rollup-plugin-commonjs')
 const babel = require('rollup-plugin-babel')
 const json = require('rollup-plugin-json')
 const {terser} = require('rollup-plugin-terser')
+const vue = require('rollup-plugin-vue')
+const postcss = require('rollup-plugin-postcss')
 
 const inputPath = path.resolve(__dirname, './src/index.js')
 const ouputUmdPath = path.resolve(__dirname, './dist/datav.min.js')
@@ -14,10 +16,16 @@ module.exports =  {
   output: [{
     file: ouputUmdPath,
     format: 'umd',
-    name: 'datav'
+    name: 'datav',
+    globals: {
+      vue: 'vue'
+    }
   }, {
     file: ouputEsPath,
-    format: 'es'
+    format: 'es',
+    globals: {
+      vue: 'vue'
+    }
   }],
   plugins: [
     resolve(),
@@ -26,8 +34,13 @@ module.exports =  {
       exclude: 'node_modules/**'
     }),
     json(),
+    vue(),
+    postcss({
+      plugins: []
+    }),
     terser()
   ],
+  
   external: [
     'vue'
   ]

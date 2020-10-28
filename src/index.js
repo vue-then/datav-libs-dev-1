@@ -1,5 +1,5 @@
-import {random} from 'sam-test-data'
+import Test from './Test.vue'
 
-console.log(random())
-
-export default random
+export default function(Vue) {
+  Vue.component(Test.name, Test)
+}
