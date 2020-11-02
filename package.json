@@ -2,13 +2,21 @@
   "name": "datav-libs-dev",
   "version": "1.0.0",
   "description": "datav components library",
-  "main": "index.js",
+  "main": "dist/datav.js",
   "scripts": {
     "dev": "rollup -wc rollup.config.dev.js",
-    "build": "rollup -c rollup.config.dev.js",
-    "build:prod": "rollup -c rollup.config.prod.js"
+    "build": "eslint ./src && rollup -c rollup.config.dev.js",
+    "build:prod": "eslint ./src && rollup -c rollup.config.prod.js",
+    "lint": "eslint ./src"
   },
-  "keywords": [],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "vue",
+    "datav"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -16,6 +24,8 @@
     "@babel/preset-env": "^7.12.1",
     "@vue/compiler-sfc": "^3.0.2",
     "babel-loader": "^8.1.0",
+    "eslint": "^7.12.1",
+    "eslint-plugin-vue": "^7.1.0",
     "rollup": "^2.32.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
